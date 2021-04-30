@@ -1,0 +1,390 @@
+openapi: 3.0.0
+info:
+  title: Rengars statistics sevice
+  description: This is a service for storing events from user and market place services
+    and calculate statistics in time.
+  contact:
+    email: smitkva1@fel.cvut.cz
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://api.example.com/v1
+tags:
+- name: Events
+  description: Entry of all events.
+- name: Statistics
+  description: Everything about statistics.
+paths:
+  /events/{eventType}:
+    post:
+      tags:
+      - Events
+      summary: Add a new event to the store
+      operationId: add_event
+      parameters:
+      - name: eventType
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/EventType'
+      requestBody:
+        description: A JSON object containing event informations
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "200":
+          description: Event is saved
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: General error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: Events
+  /basicStatistisc:
+    get:
+      tags:
+      - Statistics
+      summary: Gets all basic statistics.
+      operationId: get_basic_statistics
+      responses:
+        "200":
+          description: Data successfully obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BasicStatistics'
+                x-content-type: application/json
+        "400":
+          description: General error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: The user not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: General error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: Statistics
+  /statistics/newOffers:
+    get:
+      tags:
+      - Statistics
+      summary: Gets new offers in time.
+      operationId: get_all_new_offers
+      responses:
+        "200":
+          description: Data successfully obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewOffers'
+                x-content-type: application/json
+        "400":
+          description: General error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: The user not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: General error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: Statistics
+  /statistics/newOffers/headhunter/{id}:
+    get:
+      tags:
+      - Statistics
+      summary: Gets new offers in time for specific headhunter.
+      operationId: get_new_offers_headhuner
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Data successfully obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewOffersInTime'
+                x-content-type: application/json
+        "400":
+          description: General error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: The user not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: General error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-swagger-router-controller: Statistics
+components:
+  schemas:
+    EventType:
+      type: string
+      enum:
+      - user
+      - offer
+      - application
+    UserEventType:
+      type: string
+      enum:
+      - NEW_HEADHUNTER
+      - UPDATE_HEADHUNTER
+      - LEAVE_HEADHUNTER
+      - NEW_USER
+      - UPDATE_USER
+      - LEAVE_USER
+    OfferEventType:
+      type: string
+      enum:
+      - NEW_OFFER
+      - UPDATE_OFFER
+      - SUCCESS_CLOSE_OFFER
+      - FAILURE_CLOSE_OFFER
+    ApplicationEventType:
+      type: string
+      enum:
+      - NEW_APPLICATION
+      - UPDATE_APPLICATION
+      - SUCCESS_CLOSE_APPLICATION
+      - FAILURE_CLOSE_APPLICATION
+    UserEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/UserEventType'
+    OfferEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+        companyName:
+          type: string
+        positionName:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/OfferEventType'
+    ApplicationEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int32
+        note:
+          type: string
+        jobOfferId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        eventType:
+          $ref: '#/components/schemas/ApplicationEventType'
+    BasicStatistics:
+      type: object
+      properties:
+        numberOfHeadhusters:
+          type: integer
+          format: int32
+        numberOfUsers:
+          type: integer
+          format: int32
+        numberOfOffers:
+          type: integer
+          format: int32
+        numberOfSuccessCloseOffers:
+          type: integer
+          format: int32
+        numberOfFailureCloseOffers:
+          type: integer
+          format: int32
+        ratioOfSuccessfulToUnsuccessfulOffers:
+          type: number
+          format: double
+        ratioOfHeadhunresToUsers:
+          type: number
+          format: double
+      example:
+        numberOfOffers: 1
+        ratioOfHeadhunresToUsers: 7.061401241503109105224211816675961017608642578125
+        numberOfUsers: 6
+        ratioOfSuccessfulToUnsuccessfulOffers: 2.3021358869347654518833223846741020679473876953125
+        numberOfHeadhusters: 0
+        numberOfFailureCloseOffers: 5
+        numberOfSuccessCloseOffers: 5
+    NewOffers:
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewOffers_offers'
+      example:
+        offers:
+        - positionName: positionName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          headhunter: 6
+          companyName: companyName
+          offerId: 0
+        - positionName: positionName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          headhunter: 6
+          companyName: companyName
+          offerId: 0
+    NewOffersInTime:
+      type: object
+      properties:
+        headhunter:
+          type: integer
+          format: int32
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewOffersInTime_offers'
+      example:
+        offers:
+        - positionName: positionName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          companyName: companyName
+          offerId: 6
+        - positionName: positionName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          companyName: companyName
+          offerId: 6
+        headhunter: 0
+    Error:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Unique id of the error
+          example: errors.notifications.alreadySent
+        message:
+          type: string
+          description: Error message
+          example: Sent notification can not be cancelled.
+        details:
+          type: object
+          description: Provides additional metadata about the error.
+      description: "Describes error, its identifier and additional info."
+    body:
+      oneOf:
+      - $ref: '#/components/schemas/UserEvent'
+      - $ref: '#/components/schemas/OfferEvent'
+      - $ref: '#/components/schemas/ApplicationEvent'
+    NewOffers_offers:
+      type: object
+      properties:
+        offerId:
+          type: integer
+          format: int32
+        headhunter:
+          type: integer
+          format: int32
+        companyName:
+          type: string
+        positionName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      example:
+        positionName: positionName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        headhunter: 6
+        companyName: companyName
+        offerId: 0
+    NewOffersInTime_offers:
+      type: object
+      properties:
+        offerId:
+          type: integer
+          format: int32
+        companyName:
+          type: string
+        positionName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      example:
+        positionName: positionName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        companyName: companyName
+        offerId: 6

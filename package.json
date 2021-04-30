@@ -1,0 +1,20 @@
+{
+  "name": "rengars-statistics-sevice",
+  "version": "1.0.0",
+  "description": "This is a service for storing events from user and market place services and calculate statistics in time.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "keywords": [
+    "swagger",
+    "docker"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.2.3"
+  }
+}

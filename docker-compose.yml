@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: swa_postgres
+    ports:
+      - "5400:5432"
+    env_file:
+      - ./.env
+    volumes:
+      - /var/lib/postgresql/data
+    restart: always
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: swa_pgadmin4
+    links:
+      - "db:pgsql-server"
+    ports:
+      - "8001:80"
+    depends_on:
+      - "db"
+    env_file:
+      - ./.env
+    volumes:
+      - /var/lib/pgadmin
+    restart: always
+
+  app:
+    container_name: swa_statistics
+    build:
+      context: .
+      target: dev
+    depends_on:
+        - "db"
+    volumes:
+      - ./:/usr/src/app/
+      - /usr/src/app/node_modules
+    ports:
+      - "8080:8080"
+    
+    
