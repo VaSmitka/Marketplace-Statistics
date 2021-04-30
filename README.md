@@ -21,3 +21,9 @@ This project leverages the mega-awesome [swagger-tools](https://github.com/apige
 ## Commands
 
 - docker exec -t -i marketplace-statistics_app_1 /bin/bash  = docker container filesystem
+
+## Useful Links
+
+- https://blog.logrocket.com/node-js-docker-improve-dx/
+
+- git config core.sshCommand "ssh -i ~/.ssh/id_rsa2" = konfigurace konkretniho rsa paru

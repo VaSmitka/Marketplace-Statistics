@@ -4,19 +4,22 @@ services:
   db:
     image: postgres
     container_name: swa_postgres
+    networks:
+      - db_user
+      - db_admin
     ports:
-      - "5400:5432"
+      - "${DB_PORT}:5432"
     env_file:
       - ./.env
     volumes:
       - /var/lib/postgresql/data
-    restart: always
+    restart: on-failure
   
   pgadmin:
     image: dpage/pgadmin4
     container_name: swa_pgadmin4
-    links:
-      - "db:pgsql-server"
+    networks:
+      - db_admin
     ports:
       - "8001:80"
     depends_on:
@@ -25,19 +28,33 @@ services:
       - ./.env
     volumes:
       - /var/lib/pgadmin
-    restart: always
+    restart: on-failure
 
   app:
     container_name: swa_statistics
     build:
       context: .
-      target: dev
+      target: ${BUILD_TYPE}
+    environment:
+      - "DB_PORT=${DB_PORT}"
+      - "SERVER_PORT=${SERVICE_PORT}"
+    networks:
+      - db_user
     depends_on:
-        - "db"
+      - "db"
+    env_file:
+      - ./.env
     volumes:
       - ./:/usr/src/app/
       - /usr/src/app/node_modules
     ports:
-      - "8080:8080"
+      - "${SERVICE_PORT}:${SERVICE_PORT}"
+    restart: on-failure
+
+networks:
+  db_user:
+    driver: bridge
+  db_admin:
+    driver: bridge
     
     
