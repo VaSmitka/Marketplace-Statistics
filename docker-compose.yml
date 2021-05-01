@@ -7,12 +7,16 @@ services:
     networks:
       - db_user
       - db_admin
-    ports:
-      - "${DB_PORT}:5432"
+    expose:
+      - "5432"
     env_file:
       - ./.env
     volumes:
+      - ./scripts/create-multiple-databases.sh:/docker-entrypoint-initdb.d/create-multiple-databases.sh
       - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "psql", "${POSTGRES_USER}", "-h", "0.0.0.0", "-d", "swa_statistics"]
+      interval: 5s
     restart: on-failure
   
   pgadmin:
@@ -36,12 +40,12 @@ services:
       context: .
       target: ${BUILD_TYPE}
     environment:
-      - "DB_PORT=${DB_PORT}"
       - "SERVER_PORT=${SERVICE_PORT}"
     networks:
       - db_user
     depends_on:
-      - "db"
+      db:
+        condition: service_healthy 
     env_file:
       - ./.env
     volumes:

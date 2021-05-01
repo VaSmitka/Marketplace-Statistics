@@ -27,3 +27,7 @@ This project leverages the mega-awesome [swagger-tools](https://github.com/apige
 - https://blog.logrocket.com/node-js-docker-improve-dx/
 
 - git config core.sshCommand "ssh -i ~/.ssh/id_rsa2" = konfigurace konkretniho rsa paru
+
+## ENV file
+
+- POSTGRES_MULTIPLE_DATABASES=production db,development db,test db
