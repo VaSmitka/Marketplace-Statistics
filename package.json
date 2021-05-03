@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test": "jest --ci --watchAll=false"
+    "test": "jest -ci --reporters=default --reporters=jest-junit --detectOpenHandles --watchAll=false"
   },
   "keywords": [
     "swagger",
