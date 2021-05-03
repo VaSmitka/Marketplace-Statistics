@@ -12,4 +12,6 @@ describe('integration test jest', () => {
       expect(users).toStrictEqual([])
     );
   });
+
+  afterAll(() => process.exit());
 });
