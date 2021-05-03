@@ -14,7 +14,7 @@ const db = {};
  */
 const dbNames = process.env.POSTGRES_MULTIPLE_DATABASES.split(',');
 let dbDname;
-
+console.log(process.env)
 switch(process.env.NODE_ENV) {
   case 'production':
     dbDname = dbNames[0];
