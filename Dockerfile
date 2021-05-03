@@ -23,6 +23,6 @@ CMD ["nodemon", "-L", "index.js" ]
 
 FROM base as test
 ENV NODE_ENV=test
-RUN npm install
+RUN npm install -g jest && npm install
 COPY . .
-CMD [ "npm", "run", "jest" ]
+CMD [ "npm", "test" ]

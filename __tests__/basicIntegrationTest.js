@@ -1,4 +1,4 @@
-const db = require("./models");
+const db = require("../models");
 
 describe('integration test jest', () => {
   beforeAll(() => {
@@ -7,9 +7,9 @@ describe('integration test jest', () => {
     return db.sequelize.sync({ force: true }).then(() => console.log("Drop and re-sync db."));
   });
 
-  test('is delicious', () => {
+  test('is delicious', async () => {
     const users = await db['User'].findAll();
-    console.log(users);
-    // expect(myBeverage.delicious).toBeTruthy();
+    
+    expect(users).toStrictEqual([]);
   });
 });
