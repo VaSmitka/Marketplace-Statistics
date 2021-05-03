@@ -14,7 +14,7 @@ const db = {};
  */
 const dbNames = process.env.POSTGRES_MULTIPLE_DATABASES.split(',');
 let dbDname;
-console.log(process.env.NODE_ENV)
+
 switch(process.env.NODE_ENV) {
   case 'production':
     dbDname = dbNames[0];
@@ -22,9 +22,8 @@ switch(process.env.NODE_ENV) {
   case 'development':
     dbDname = dbNames[1];
     break;
-  case 'test':
+  case 'testing':
     dbDname = process.env.POSTGRES_TEST_DB;
-    console.log('jsem tu?')
     break;  
   default:
     dbDname = dbNames[1];
