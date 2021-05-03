@@ -20,7 +20,7 @@ services:
     container_name: swa_statistics
     build:
       context: .
-      target: test
+      dockerfile: Dockerfile.test
     environment:
       - "SERVER_PORT=${SERVICE_PORT}"
     networks:

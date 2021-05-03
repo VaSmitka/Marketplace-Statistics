@@ -9,19 +9,7 @@ EXPOSE 8080
 COPY package.json .
 COPY package-lock.json .
 
-FROM base as prod
-ENV NODE_ENV=production
-RUN npm ci
-COPY . .
-CMD [ "node", "index.js" ]
-
-FROM base as dev
-ENV NODE_ENV=development
-RUN npm install -g nodemon && npm install
-COPY . .
-CMD ["nodemon", "-L", "index.js" ]
-
-FROM base as test
+FROM base
 ENV NODE_ENV=testing
 RUN npm install -g jest && npm install
 COPY . .

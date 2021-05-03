@@ -38,7 +38,7 @@ services:
     container_name: swa_statistics
     build:
       context: .
-      target: ${BUILD_TYPE}
+      dockerfile: "Dockerfile.${BUILD_TYPE}"
     environment:
       - "SERVER_PORT=${SERVICE_PORT}"
     networks:

@@ -27,6 +27,9 @@ This project leverages the mega-awesome [swagger-tools](https://github.com/apige
 - https://blog.logrocket.com/node-js-docker-improve-dx/
 
 - git config core.sshCommand "ssh -i ~/.ssh/id_rsa2" = konfigurace konkretniho rsa paru
+- https://github.com/facebook/jest/issues/1456
+- https://jestjs.io/docs/cli
+- http://sequelize.org/master/manual/getting-started.html#closing-the-connection
 
 ## ENV file
 
