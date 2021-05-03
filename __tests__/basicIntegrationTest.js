@@ -13,5 +13,5 @@ describe('integration test jest', () => {
     );
   });
 
-  afterAll(() => process.exit(0));
+  // afterAll(() => process.exit(0));
 });
