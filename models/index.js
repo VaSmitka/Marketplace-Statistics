@@ -20,8 +20,8 @@ switch(process.env.NODE_ENV) {
     dbDname = dbNames[0];
   case 'development':
     dbDname = dbNames[1];
-  case 'test': 
-    dbDname = dbNames[2];  
+  case 'test':
+    dbDname = process.env.POSTGRES_TEST_DB;  
   default:
     dbDname = dbNames[1];
 }
