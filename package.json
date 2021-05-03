@@ -4,7 +4,8 @@
   "description": "This is a service for storing events from user and market place services and calculate statistics in time.",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "test": "jest"
   },
   "keywords": [
     "swagger",
@@ -19,5 +20,8 @@
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }

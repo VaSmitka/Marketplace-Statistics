@@ -21,3 +21,8 @@ RUN npm install -g nodemon && npm install
 COPY . .
 CMD ["nodemon", "-L", "index.js" ]
 
+FROM base as test
+ENV NODE_ENV=test
+RUN npm install
+COPY . .
+CMD [ "npm", "run", "jest" ]
