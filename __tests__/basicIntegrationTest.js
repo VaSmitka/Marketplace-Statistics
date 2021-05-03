@@ -7,9 +7,9 @@ describe('integration test jest', () => {
     return db.sequelize.sync({ force: true }).then(() => console.log("Drop and re-sync db."));
   });
 
-  test('is delicious', async () => {
-    const users = await db['User'].findAll();
-    
-    expect(users).toStrictEqual([]);
+  test('is delicious', () => {
+    return db['User'].findAll().then(users => {
+      expect(users).toStrictEqual([]);
+    });
   });
 });
