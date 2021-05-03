@@ -18,10 +18,13 @@ console.log(process.env)
 switch(process.env.NODE_ENV) {
   case 'production':
     dbDname = dbNames[0];
+    break;
   case 'development':
     dbDname = dbNames[1];
+    break;
   case 'test':
-    dbDname = process.env.POSTGRES_TEST_DB;  
+    dbDname = process.env.POSTGRES_TEST_DB;
+    break;  
   default:
     dbDname = dbNames[1];
 }
