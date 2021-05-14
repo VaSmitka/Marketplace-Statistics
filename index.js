@@ -26,6 +26,6 @@ db.sequelize.sync({ force: true }).then(() => {
 http.createServer(app).listen(process.env.SERVER_PORT, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', process.env.SERVER_PORT, process.env.SERVER_PORT);
     console.log('Swagger-ui is available on http://localhost:%d/docs', process.env.SERVER_PORT);
-    console.log("ENV data", process.env)
+    // console.log("ENV data", process.env)
 });
 

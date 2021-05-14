@@ -29,7 +29,7 @@ switch(process.env.NODE_ENV) {
     dbDname = dbNames[1];
 }
 
-console.log(dbDname);
+console.log("DB NAME", dbDname);
 
 let sequelize = new Sequelize(
     dbDname,

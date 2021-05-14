@@ -1,9 +1,11 @@
 FROM node:lts as base
 
+ARG STATISTICS_PORT
+
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-EXPOSE 8080
+RUN mkdir -p /usr/src/statistics
+WORKDIR /usr/src/statistics
+EXPOSE ${STATISTICS_PORT}
 
 # Install dependencies
 COPY package.json .
