@@ -3,57 +3,69 @@ version: '3'
 services:
   db:
     image: postgres
-    container_name: swa_postgres
+    container_name: swa_service_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_MULTIPLE_DATABASES: ${POSTGRES_MULTIPLE_DATABASES}
     networks:
       - db_user
       - db_admin
     expose:
       - "5432"
-    env_file:
-      - ./.env
     volumes:
       - ./scripts/create-multiple-databases.sh:/docker-entrypoint-initdb.d/create-multiple-databases.sh
       - /var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "psql", "${POSTGRES_USER}", "-h", "0.0.0.0", "-d", "swa_statistics"]
       interval: 5s
-    restart: on-failure
+    restart: unless-stopped
   
   pgadmin:
     image: dpage/pgadmin4
-    container_name: swa_pgadmin4
+    container_name: swa_service_pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     networks:
       - db_admin
     ports:
-      - "8001:80"
+      - "${PGADMIN_PORT}:80"
     depends_on:
       - "db"
-    env_file:
-      - ./.env
     volumes:
       - /var/lib/pgadmin
-    restart: on-failure
+    restart: unless-stopped
 
   app:
-    container_name: swa_statistics
+    container_name: swa_service_statistics
     build:
       context: .
       dockerfile: "Dockerfile.${BUILD_TYPE}"
+      args: 
+        STATISTICS_PORT: ${STATISTICS_PORT}
     environment:
-      - "SERVER_PORT=${SERVICE_PORT}"
+      SERVER_PORT: ${SERVICE_PORT}
+      SERVER_PORT: ${STATISTICS_PORT}
+      BUILD_TYPE: ${BUILD_TYPE}
+      DB_TYPE: ${DB_TYPE}
+      DB_URL: ${DB_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_MULTIPLE_DATABASES: ${POSTGRES_MULTIPLE_DATABASES}
+      POSTGRES_TEST_DB: ${POSTGRES_TEST_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
     networks:
       - db_user
     depends_on:
       db:
         condition: service_healthy 
-    env_file:
-      - ./.env
     volumes:
       - ./:/usr/src/app/
       - /usr/src/app/node_modules
     ports:
-      - "${SERVICE_PORT}:${SERVICE_PORT}"
-    restart: on-failure
+      - "${STATISTICS_PORT}:${STATISTICS_PORT}"
+    restart: unless-stopped
 
 networks:
   db_user:
