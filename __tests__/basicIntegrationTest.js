@@ -1,4 +1,4 @@
-const db = require("../models");
+var db = require("../models");
 
 beforeAll(() => {
   // Clears the database and adds some testing data.

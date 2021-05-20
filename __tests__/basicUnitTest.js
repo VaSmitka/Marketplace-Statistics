@@ -1,4 +1,4 @@
-const myBeverage = {
+var myBeverage = {
   delicious: true,
   sour: false,
 };
