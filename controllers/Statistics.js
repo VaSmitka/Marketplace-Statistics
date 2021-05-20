@@ -4,7 +4,7 @@ var utils = require('../utils/writer.js');
 var Statistics = require('../service/StatisticsService');
 
 module.exports.get_all_new_offers = function get_all_new_offers (req, res, next) {
-  Statistics.get_all_new_offers()
+  Statistics.get_all_new_offers(req.app.db)
     .then(function (response) {
       utils.writeJson(res, response);
     })

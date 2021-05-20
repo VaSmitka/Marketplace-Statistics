@@ -6,43 +6,48 @@
  *
  * returns List
  **/
-exports.get_all_new_offers = function() {
+exports.get_all_new_offers = function(db) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
+    db['MarketplaceEvents'].findAll()
+      .then(offers => resolve(offers))
+      .catch(error => reject(error));
+    
+    /*var examples = {};
     examples['application/json'] = [ {
-  "offers" : [ {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "headhunter" : 6,
-    "companyName" : "companyName",
-    "offerId" : 0
-  }, {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "headhunter" : 6,
-    "companyName" : "companyName",
-    "offerId" : 0
-  } ]
-}, {
-  "offers" : [ {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "headhunter" : 6,
-    "companyName" : "companyName",
-    "offerId" : 0
-  }, {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "headhunter" : 6,
-    "companyName" : "companyName",
-    "offerId" : 0
-  } ]
-} ];
+      "offers" : [ {
+        "positionName" : "positionName",
+        "createdAt" : "2000-01-23T04:56:07.000+00:00",
+        "headhunter" : 6,
+        "companyName" : "companyName",
+        "offerId" : 0
+      }, {
+        "positionName" : "positionName",
+        "createdAt" : "2000-01-23T04:56:07.000+00:00",
+        "headhunter" : 6,
+        "companyName" : "companyName",
+        "offerId" : 0
+      } ]
+    }, {
+      "offers" : [ {
+        "positionName" : "positionName",
+        "createdAt" : "2000-01-23T04:56:07.000+00:00",
+        "headhunter" : 6,
+        "companyName" : "companyName",
+        "offerId" : 0
+      }, {
+        "positionName" : "positionName",
+        "createdAt" : "2000-01-23T04:56:07.000+00:00",
+        "headhunter" : 6,
+        "companyName" : "companyName",
+        "offerId" : 0
+      } ]
+    } ];
+
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
-    }
+    }*/
   });
 }
 

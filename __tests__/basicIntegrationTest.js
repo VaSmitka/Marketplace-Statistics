@@ -9,8 +9,8 @@ beforeAll(() => {
 describe('integration test jest', () => {
 
   test('is delicious', () => {
-    return db['User'].findAll().then(users => 
-      expect(users).toStrictEqual([])
+    return db['MarketplaceEvents'].findAll().then(offers => 
+      expect(offers).toStrictEqual([])
     );
   });
 
