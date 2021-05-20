@@ -24,6 +24,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     modelName: 'MarketplaceEvents',
+    createdAt: false,
+    updatedAt: false
   });
 
   return MarketplaceEvents;

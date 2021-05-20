@@ -17,3 +17,17 @@ open http://localhost:8080/docs
 ```
 
 This project leverages the mega-awesome [swagger-tools](https://github.com/apigee-127/swagger-tools) middleware which does most all the work.
+
+### SQL scripts
+INSERT INTO public."MarketplaceEvents"(
+	"eventType", "offerId", "posterId", "companyName", "offerCreated", "offerClosed")
+	VALUES ('JOB_OFFER_CREATED', 1, 7, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 2, 4, 'FitWolfe1', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 3, 5, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', null),
+	('JOB_OFFER_CREATED', 4, 5, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 5, 5, 'FitWolfe1', '2020-04-25T16:17:58.181000Z', null),
+	('JOB_OFFER_CREATED', 6, 4, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 7, 6, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', null),
+	('JOB_OFFER_CREATED', 8, 7, 'FitWolfe1', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 9, 6, 'FitWolfe2', '2020-04-25T16:17:58.181000Z', '2021-04-25T16:17:58.181000Z'),
+	('JOB_OFFER_CREATED', 10, 7, 'FitWolfe1', '2020-04-25T16:17:58.181000Z', null)

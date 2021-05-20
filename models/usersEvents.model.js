@@ -23,6 +23,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     modelName: 'UsersEvents',
+    createdAt: false,
+    updatedAt: false
   });
 
   return UsersEvents;

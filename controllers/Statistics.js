@@ -4,7 +4,7 @@ var utils = require('../utils/writer.js');
 var Statistics = require('../service/StatisticsService');
 
 module.exports.get_headhunter_statistics = function get_headhunter_statistics (req, res, next) {
-  Statistics.get_headhunter_statistics()
+  Statistics.get_headhunter_statistics(req.app.db)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -14,7 +14,7 @@ module.exports.get_headhunter_statistics = function get_headhunter_statistics (r
 };
 
 module.exports.get_headhunter_statistics_period = function get_headhunter_statistics_period (req, res, next, from, to) {
-  Statistics.get_headhunter_statistics_period(from, to)
+  Statistics.get_headhunter_statistics_period(req.app.db, from, to)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -24,7 +24,7 @@ module.exports.get_headhunter_statistics_period = function get_headhunter_statis
 };
 
 module.exports.get_marketplace_statistics = function get_marketplace_statistics (req, res, next) {
-  Statistics.get_marketplace_statistics()
+  Statistics.get_marketplace_statistics(req.app.db)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -34,7 +34,7 @@ module.exports.get_marketplace_statistics = function get_marketplace_statistics 
 };
 
 module.exports.get_marketplace_statistics_period = function get_marketplace_statistics_period (req, res, next, from, to) {
-  Statistics.get_marketplace_statistics_period(from, to)
+  Statistics.get_marketplace_statistics_period(req.app.db, from, to)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -44,7 +44,7 @@ module.exports.get_marketplace_statistics_period = function get_marketplace_stat
 };
 
 module.exports.get_users_statistics = function get_users_statistics (req, res, next) {
-  Statistics.get_users_statistics()
+  Statistics.get_users_statistics(req.app.db)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -54,7 +54,7 @@ module.exports.get_users_statistics = function get_users_statistics (req, res, n
 };
 
 module.exports.get_users_statistics_period = function get_users_statistics_period (req, res, next, from, to) {
-  Statistics.get_users_statistics_period(from, to)
+  Statistics.get_users_statistics_period(req.app.db, from, to)
     .then(function (response) {
       utils.writeJson(res, response);
     })

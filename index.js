@@ -30,7 +30,8 @@ for (var i = 2; i < openApiApp._router.stack.length; i++) {
 }
 
 // connect database
-db.sequelize.sync({ force: true }).then(function() { 
+// { force: true }
+db.sequelize.sync().then(function() { 
     console.log("Drop and re-sync db."); 
 });
 // set database
