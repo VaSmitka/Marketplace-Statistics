@@ -12,8 +12,8 @@ const db = {};
  * 1 => development db
  * 2 => test db
  */
-const dbNames = process.env.POSTGRES_MULTIPLE_DATABASES.split(',');
-let dbDname;
+var dbNames = process.env.POSTGRES_MULTIPLE_DATABASES.split(',');
+var dbDname;
 
 switch(process.env.NODE_ENV) {
   case 'production':

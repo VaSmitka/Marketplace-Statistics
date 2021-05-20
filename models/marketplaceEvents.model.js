@@ -1,6 +1,6 @@
 'use strict';
 
-const { Model } = require('sequelize');
+var { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class MarketplaceEvents extends Model {

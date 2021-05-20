@@ -1,24 +1,24 @@
 'use strict';
 
-const path = require('path');
+var path = require('path');
 
-const oas3Tools = require('oas3-tools');
-const express = require('express');
-const actuator = require('express-actuator');
+var oas3Tools = require('oas3-tools');
+var express = require('express');
+var actuator = require('express-actuator');
 
-const db = require("./models");
+var db = require("./models");
 
-const app = express();
+var app = express();
 
 // swaggerRouter configuration
-const options = {
+var options = {
     routing: {
         controllers: path.join(__dirname, './controllers')
     },
 };
 
-const expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
-const openApiApp = expressAppConfig.getApp();
+var expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
+var openApiApp = expressAppConfig.getApp();
 
 // hotfix !!!
 for (let i = 2; i < openApiApp._router.stack.length; i++) {
