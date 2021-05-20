@@ -1,0 +1,8 @@
+{
+  "UsersEvents": [
+    "NEW_USER_ACCOUNT_REGISTERED"
+  ],
+  "MarketplaceEvents": [
+    "JOB_OFFER_CREATED"
+  ]
+}

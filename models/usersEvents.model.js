@@ -2,7 +2,7 @@
 
 var { Model } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = function(sequelize, DataTypes) {
   class UsersEvents extends Model {
     /**
      * Helper method for defining associations.
