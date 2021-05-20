@@ -9,6 +9,8 @@
   },
   "keywords": [
     "swagger",
+    "rabbitmq",
+    "sequelize",
     "docker"
   ],
   "license": "Unlicense",

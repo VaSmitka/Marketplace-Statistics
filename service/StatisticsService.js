@@ -2,81 +2,25 @@
 
 
 /**
- * Gets new offers in time.
+ * Gets global headhunter statistics.
  *
- * returns List
+ * returns HeadhunterStatistics
  **/
-exports.get_all_new_offers = function(db) {
-  return new Promise(function(resolve, reject) {
-    db['MarketplaceEvents'].findAll()
-      .then(offers => resolve(offers))
-      .catch(error => reject(error));
-    
-    /*var examples = {};
-    examples['application/json'] = [ {
-      "offers" : [ {
-        "positionName" : "positionName",
-        "createdAt" : "2000-01-23T04:56:07.000+00:00",
-        "headhunter" : 6,
-        "companyName" : "companyName",
-        "offerId" : 0
-      }, {
-        "positionName" : "positionName",
-        "createdAt" : "2000-01-23T04:56:07.000+00:00",
-        "headhunter" : 6,
-        "companyName" : "companyName",
-        "offerId" : 0
-      } ]
-    }, {
-      "offers" : [ {
-        "positionName" : "positionName",
-        "createdAt" : "2000-01-23T04:56:07.000+00:00",
-        "headhunter" : 6,
-        "companyName" : "companyName",
-        "offerId" : 0
-      }, {
-        "positionName" : "positionName",
-        "createdAt" : "2000-01-23T04:56:07.000+00:00",
-        "headhunter" : 6,
-        "companyName" : "companyName",
-        "offerId" : 0
-      } ]
-    } ];
-
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }*/
-  });
-}
-
-
-/**
- * Gets all basic statistics.
- *
- * returns List
- **/
-exports.get_basic_statistics = function() {
+exports.get_headhunter_statistics = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "numberOfOffers" : 1,
-  "ratioOfHeadhunresToUsers" : 7.061401241503109,
-  "numberOfUsers" : 6,
-  "ratioOfSuccessfulToUnsuccessfulOffers" : 2.3021358869347655,
-  "numberOfHeadhusters" : 0,
-  "numberOfFailureCloseOffers" : 5,
-  "numberOfSuccessCloseOffers" : 5
-}, {
-  "numberOfOffers" : 1,
-  "ratioOfHeadhunresToUsers" : 7.061401241503109,
-  "numberOfUsers" : 6,
-  "ratioOfSuccessfulToUnsuccessfulOffers" : 2.3021358869347655,
-  "numberOfHeadhusters" : 0,
-  "numberOfFailureCloseOffers" : 5,
-  "numberOfSuccessCloseOffers" : 5
-} ];
+    examples['application/json'] = {
+  "offersSum" : [ {
+    "headhunterId" : 0,
+    "offersOpenSum" : 6,
+    "offersCloseSum" : 1
+  }, {
+    "headhunterId" : 0,
+    "offersOpenSum" : 6,
+    "offersCloseSum" : 1
+  } ],
+  "ofPeriod" : "ofPeriod"
+};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -87,41 +31,175 @@ exports.get_basic_statistics = function() {
 
 
 /**
- * Gets new offers in time for specific headhunter.
+ * Gets global headhunter statistics of the period.
  *
- * id Integer 
- * returns List
+ * from String 
+ * to String 
+ * returns HeadhunterStatistics
  **/
-exports.get_new_offers_headhuner = function(id) {
+exports.get_headhunter_statistics_period = function(from,to) {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "offers" : [ {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "companyName" : "companyName",
-    "offerId" : 6
+    examples['application/json'] = {
+  "offersSum" : [ {
+    "headhunterId" : 0,
+    "offersOpenSum" : 6,
+    "offersCloseSum" : 1
   }, {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "companyName" : "companyName",
-    "offerId" : 6
+    "headhunterId" : 0,
+    "offersOpenSum" : 6,
+    "offersCloseSum" : 1
   } ],
-  "headhunter" : 0
-}, {
-  "offers" : [ {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "companyName" : "companyName",
-    "offerId" : 6
+  "ofPeriod" : "ofPeriod"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Gets global marketplace statistics.
+ *
+ * returns MarketplaceStatistics
+ **/
+exports.get_marketplace_statistics = function() {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "offersSum" : 0,
+  "companiesSum" : 1,
+  "eventTypesSum" : [ {
+    "sum" : 0,
+    "eventType" : "eventType"
   }, {
-    "positionName" : "positionName",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "companyName" : "companyName",
-    "offerId" : 6
+    "sum" : 0,
+    "eventType" : "eventType"
   } ],
-  "headhunter" : 0
-} ];
+  "ofPeriod" : "ofPeriod",
+  "headhuntersSum" : 6
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Gets global marketplace statistics of the period.
+ *
+ * from String 
+ * to String 
+ * returns MarketplaceStatistics
+ **/
+exports.get_marketplace_statistics_period = function(from,to) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "offersSum" : 0,
+  "companiesSum" : 1,
+  "eventTypesSum" : [ {
+    "sum" : 0,
+    "eventType" : "eventType"
+  }, {
+    "sum" : 0,
+    "eventType" : "eventType"
+  } ],
+  "ofPeriod" : "ofPeriod",
+  "headhuntersSum" : 6
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Gets global users statistics.
+ *
+ * returns UsersStatistics
+ **/
+exports.get_users_statistics = function() {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "rolesSum" : [ {
+    "sum" : 5,
+    "roleType" : "roleType"
+  }, {
+    "sum" : 5,
+    "roleType" : "roleType"
+  } ],
+  "usersSum" : 6,
+  "eventTypesSum" : [ {
+    "sum" : 0,
+    "eventType" : "eventType"
+  }, {
+    "sum" : 0,
+    "eventType" : "eventType"
+  } ],
+  "gendersSum" : [ {
+    "sum" : 1,
+    "genderType" : "genderType"
+  }, {
+    "sum" : 1,
+    "genderType" : "genderType"
+  } ],
+  "ofPeriod" : "ofPeriod"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Gets global users statistics of the period.
+ *
+ * from String 
+ * to String 
+ * returns UsersStatistics
+ **/
+exports.get_users_statistics_period = function(from,to) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "rolesSum" : [ {
+    "sum" : 5,
+    "roleType" : "roleType"
+  }, {
+    "sum" : 5,
+    "roleType" : "roleType"
+  } ],
+  "usersSum" : 6,
+  "eventTypesSum" : [ {
+    "sum" : 0,
+    "eventType" : "eventType"
+  }, {
+    "sum" : 0,
+    "eventType" : "eventType"
+  } ],
+  "gendersSum" : [ {
+    "sum" : 1,
+    "genderType" : "genderType"
+  }, {
+    "sum" : 1,
+    "genderType" : "genderType"
+  } ],
+  "ofPeriod" : "ofPeriod"
+};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {

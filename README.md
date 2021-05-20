@@ -17,20 +17,3 @@ open http://localhost:8080/docs
 ```
 
 This project leverages the mega-awesome [swagger-tools](https://github.com/apigee-127/swagger-tools) middleware which does most all the work.
-
-## Commands
-
-- docker exec -t -i marketplace-statistics_app_1 /bin/bash  = docker container filesystem
-
-## Useful Links
-
-- https://blog.logrocket.com/node-js-docker-improve-dx/
-
-- git config core.sshCommand "ssh -i ~/.ssh/id_rsa2" = konfigurace konkretniho rsa paru
-- https://github.com/facebook/jest/issues/1456
-- https://jestjs.io/docs/cli
-- http://sequelize.org/master/manual/getting-started.html#closing-the-connection
-
-## ENV file
-
-- POSTGRES_MULTIPLE_DATABASES=production db,development db,test db

@@ -3,8 +3,8 @@
 var utils = require('../utils/writer.js');
 var Statistics = require('../service/StatisticsService');
 
-module.exports.get_all_new_offers = function get_all_new_offers (req, res, next) {
-  Statistics.get_all_new_offers(req.app.db)
+module.exports.get_headhunter_statistics = function get_headhunter_statistics (req, res, next) {
+  Statistics.get_headhunter_statistics()
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -13,8 +13,8 @@ module.exports.get_all_new_offers = function get_all_new_offers (req, res, next)
     });
 };
 
-module.exports.get_basic_statistics = function get_basic_statistics (req, res, next) {
-  Statistics.get_basic_statistics()
+module.exports.get_headhunter_statistics_period = function get_headhunter_statistics_period (req, res, next, from, to) {
+  Statistics.get_headhunter_statistics_period(from, to)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -23,8 +23,38 @@ module.exports.get_basic_statistics = function get_basic_statistics (req, res, n
     });
 };
 
-module.exports.get_new_offers_headhuner = function get_new_offers_headhuner (req, res, next, id) {
-  Statistics.get_new_offers_headhuner(id)
+module.exports.get_marketplace_statistics = function get_marketplace_statistics (req, res, next) {
+  Statistics.get_marketplace_statistics()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.get_marketplace_statistics_period = function get_marketplace_statistics_period (req, res, next, from, to) {
+  Statistics.get_marketplace_statistics_period(from, to)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.get_users_statistics = function get_users_statistics (req, res, next) {
+  Statistics.get_users_statistics()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.get_users_statistics_period = function get_users_statistics_period (req, res, next, from, to) {
+  Statistics.get_users_statistics_period(from, to)
     .then(function (response) {
       utils.writeJson(res, response);
     })
