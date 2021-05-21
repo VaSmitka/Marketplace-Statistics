@@ -62,13 +62,13 @@ exports.get_headhunter_statistics_period = function(db, from,to) {
       FROM (
         SELECT "posterId", COUNT(*) AS "offersCloseSum"
         FROM "MarketplaceEvents" 
-        WHERE "offerClosed" IS NOT NULL AND ${from} <= "offerClosed" AND "offerClosed" <= ${to}
+        WHERE "offerClosed" IS NOT NULL AND '${from}' <= "offerClosed" AND "offerClosed" <= '${to}'
         GROUP BY "posterId"
       ) AS c
       FULL OUTER JOIN (
         SELECT "posterId", COUNT(*) AS "offersOpenSum"
         FROM "MarketplaceEvents" 
-        WHERE "offerClosed" IS NULL AND ${from} <= "offerCreated" AND "offerCreated" <= ${to}
+        WHERE "offerClosed" IS NULL AND '${from}' <= "offerCreated" AND "offerCreated" <= '${to}'
         GROUP BY "posterId"
       ) AS nc
       ON c."posterId"=nc."posterId";`
@@ -132,13 +132,13 @@ exports.get_marketplace_statistics_period = function(db, from,to) {
         COUNT(*) as "offersSum", 
         COUNT(DISTINCT "posterId") as "headhuntersSum" 
       FROM "MarketplaceEvents"
-      WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to};`
+      WHERE '${from}' <= "offerCreated" AND "offerCreated" <= '${to}';`
     )
     .then(stats => 
       db.sequelize.query(
         `SELECT "eventType", COUNT(*) as "sum" 
         FROM "MarketplaceEvents" 
-        WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to}
+        WHERE '${from}' <= "offerCreated" AND "offerCreated" <= '${to}'
         GROUP BY "eventType";`
       )
       .then(eventTypes => {
@@ -215,28 +215,28 @@ exports.get_users_statistics_period = function(db, from,to) {
     db.sequelize.query(
       `SELECT "role" AS "roleType", COUNT(*) as "sum" 
       FROM "UsersEvents" 
-      WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to}
+      WHERE '${from}' <= "acountCreated" AND "acountCreated" <= '${to}'
       GROUP BY "role";`
     )
     .then(roles => 
       db.sequelize.query(
         `SELECT "eventType", COUNT(*) as "sum" 
         FROM "UsersEvents"
-        WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to} 
+        WHERE '${from}' <= "acountCreated" AND "acountCreated" <= '${to}' 
         GROUP BY "eventType";`
       )
       .then(eventTypes => {
         db.sequelize.query(
           `SELECT "gender" AS "genderType", COUNT(*) as "sum" 
           FROM "UsersEvents"
-          WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to} 
+          WHERE '${from}' <= "acountCreated" AND "acountCreated" <= '${to}' 
           GROUP BY "gender";`
         )
         .then(genders => {
           db.sequelize.query(
             `SELECT COUNT(DISTINCT "userId") as "usersSum" 
             FROM "UsersEvents"
-            WHERE  ${from} <= "offerCreated" AND "offerCreated" <= ${to};`
+            WHERE '${from}' <= "acountCreated" AND "acountCreated" <= '${to}';`
           )
           .then(users => {
             var data = {};

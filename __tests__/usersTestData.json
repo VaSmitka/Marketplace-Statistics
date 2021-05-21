@@ -1,0 +1,37 @@
+[
+  {
+    "eventType": "NEW_USER_ACCOUNT_REGISTERED",
+    "userId": 1,
+    "gender": 1,
+    "role": 1,
+    "acountCreated": "2020-04-25T16:17:58.181000Z"
+  },
+  {
+    "eventType": "NEW_USER_ACCOUNT_REGISTERED",
+    "userId": 2,
+    "gender": 2,
+    "role": 3,
+    "acountCreated": "2020-04-26T16:17:58.181000Z"
+  },
+  {
+    "eventType": "NEW_USER_ACCOUNT_REGISTERED",
+    "userId": 3,
+    "gender": 2,
+    "role": 2,
+    "acountCreated": "2020-04-27T16:17:58.181000Z"
+  },
+  {
+    "eventType": "NEW_USER_ACCOUNT_REGISTERED",
+    "userId": 4,
+    "gender": 1,
+    "role": 2,
+    "acountCreated": "2020-04-28T16:17:58.181000Z"
+  },
+  {
+    "eventType": "NEW_USER_ACCOUNT_UPDATE",
+    "userId": 1,
+    "gender": 1,
+    "role": 2,
+    "acountCreated": "2020-05-01T16:17:58.181000Z"
+  }
+]

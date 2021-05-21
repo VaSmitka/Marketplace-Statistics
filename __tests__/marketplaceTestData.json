@@ -1,0 +1,58 @@
+[
+  {
+    "eventType": "JOB_OFFER_CREATED",
+    "offerId": "1",
+    "posterId": "5",
+    "companyName": "FitWolfe",
+    "offerCreated": "2020-04-25T16:17:58.181000Z",
+    "offerClosed": null
+  },
+  {
+    "eventType": "JOB_OFFER_CREATED",
+    "offerId": "2",
+    "posterId": "5",
+    "companyName": "Wolfe",
+    "offerCreated": "2020-04-26T16:17:58.181000Z",
+    "offerClosed": null
+  },
+  {
+    "eventType": "JOB_OFFER_CREATED",
+    "offerId": "3",
+    "posterId": "8",
+    "companyName": "Wolfe",
+    "offerCreated": "2020-04-27T16:17:58.181000Z",
+    "offerClosed": null
+  },
+  {
+    "eventType": "JOB_OFFER_CREATED",
+    "offerId": "4",
+    "posterId": "7",
+    "companyName": "Fit",
+    "offerCreated": "2020-04-28T16:17:58.181000Z",
+    "offerClosed": "2020-04-25T16:17:58.181000Z"
+  },
+  {
+    "eventType": "JOB_OFFER_CREATED",
+    "offerId": "5",
+    "posterId": "4",
+    "companyName": "Fit",
+    "offerCreated": "2020-04-29T16:17:58.181000Z",
+    "offerClosed": "2020-04-25T16:17:58.181000Z"
+  },
+  {
+    "eventType": "JOB_OFFER_UPDATE",
+    "offerId": "1",
+    "posterId": "5",
+    "companyName": "FitWolfe",
+    "offerCreated": "2020-04-25T16:17:58.181000Z",
+    "offerClosed": "2020-05-01T16:17:58.181000Z"
+  },
+  {
+    "eventType": "JOB_OFFER_UPDATE",
+    "offerId": "1",
+    "posterId": "5",
+    "companyName": "FitWolfe",
+    "offerCreated": "2020-04-25T16:17:58.181000Z",
+    "offerClosed": "2020-05-01T16:17:58.181000Z"
+  }
+]
