@@ -27,19 +27,19 @@ module.exports = function(db) {
     }
   }
 
-  amqp.connect('amqp://localhost', function(error0, connection) {
+  amqp.connect(`amqp://${process.env.RABBIT_MQ_HOST}:${process.env.RABBIT_MQ_PORT}`, function(error0, connection) {
     if (error0) throw error0;
     
 
     connection.createChannel(function(error1, channel) {
       if (error1) throw error1;
       
-      var exchange = process.env.RABBITMQ_EXCHANGE;
+      var exchange = process.env.RABBIT_MQ_EXCHANGE;
       console.log("Rabbitmq exchange: ", exchange);
 
       channel.assertExchange(exchange, 'fanout', { durable: false });
 
-      channel.assertQueue('', { exclusive: true }, function(error2, q) {
+      channel.assertQueue(process.env.RABBIT_MQ_QUEUE, { exclusive: true }, function(error2, q) {
           if (error2) throw error2;
           
           console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);

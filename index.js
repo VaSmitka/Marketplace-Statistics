@@ -7,7 +7,7 @@ var express = require('express');
 var actuator = require('express-actuator');
 
 var db = require('./models');
-// var rabbitmq = require('./rabbitmq');
+var rabbitmq = require('./rabbitmq');
  
 var app = express();
 
@@ -38,7 +38,7 @@ db.sequelize.sync().then(function() {
 app.db = db;
 
 // connect event queue
-// rabbitmq(db);
+rabbitmq(db);
 
 app.listen(process.env.SERVER_PORT, function() {
     console.log('Your server is listening on port %d (http://localhost:%d)', process.env.SERVER_PORT, process.env.SERVER_PORT);
