@@ -37,7 +37,7 @@ module.exports = function(db) {
       var exchange = process.env.RABBIT_MQ_EXCHANGE;
       console.log("Rabbitmq exchange: ", exchange);
 
-      channel.assertExchange(exchange, 'fanout', { durable: false });
+      channel.assertExchange(exchange, 'fanout', { durable: true });
 
       channel.assertQueue(process.env.RABBIT_MQ_QUEUE, { exclusive: true, durable: true }, function(error2, q) {
           if (error2) throw error2;
