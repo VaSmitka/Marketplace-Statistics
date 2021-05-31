@@ -39,7 +39,7 @@ module.exports = function(db) {
 
       channel.assertExchange(exchange, 'fanout', { durable: false });
 
-      channel.assertQueue('', { exclusive: true }, function(error2, q) {
+      channel.assertQueue(process.env.RABBIT_MQ_QUEUE, { exclusive: true, durable: true }, function(error2, q) {
           if (error2) throw error2;
           
           console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
