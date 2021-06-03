@@ -5,25 +5,25 @@ var eventeDic = require('../eventsDic.json');
 var dbAdapter = require('./saveEventsData');
 
 module.exports = function(db) {
-  console.log("Dic", eventeDic)
-
   function parserEvent(event) {
     var eventObj = JSON.parse(event);
     var dbName = '';
 
     for (let key in eventeDic) {
       // event type has to be key eventType
-      if (eventeDic[key].indexOf(eventObj['eventType']) !== -1) {
+      if (eventeDic[key].indexOf(eventObj.eventType) !== -1) {
         dbName = key;
         break;
       }
     }
 
-    if (dbName = '') {
-      console.error('Undefinated event type');
-    } else {
+    
+    if (dbName) {
       // save data to db
-      dbAdapter['dbName'](db[dbName], eventObj);
+      console.log("Tak co?", dbName, dbAdapter[dbName]);
+      dbAdapter[dbName](db[dbName], eventObj);
+    } else {
+      console.error('Undefinated event type');
     }
   }
 

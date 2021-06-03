@@ -1,5 +1,6 @@
 {
   "UsersEvents": [
+    "NEW_USER_ACCOUNT_CREATED",
     "NEW_USER_ACCOUNT_REGISTERED"
   ],
   "MarketplaceEvents": [

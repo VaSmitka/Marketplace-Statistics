@@ -1,17 +1,19 @@
 'use strict';
 
 exports.UsersEvents = (dbTable, data) => {
+  console.log("Jedeme bomby?", dbTable, data);
+
   const saveEvent = new Promise((resolve, reject) => {
     resolve(dbTable.create({
       eventType: data.eventType,
       userId: data.payload.id,
       gender: data.payload.gender,
       role: data.payload.role,
-      acountCreated: data.payload.createdAt
+      acountCreated: data.payload.createdAt.nano
     }));
-  })
-  .then(() => console.log('Event is saved', data))
-  .catch((err) => console.error('Error: ', error));
+  });
+  saveEvent.then(() => console.log('Event is saved', data));
+  saveEvent.catch((err) => console.error('Error: ', error));
 }
 
 exports.MarketplaceEvents = (dbTable, data) => {
@@ -24,7 +26,7 @@ exports.MarketplaceEvents = (dbTable, data) => {
       offerCreated: data.payload.dateCreated,
       offerClosed: data.payload.dateClosed
     }));
-  })
-  .then(() => console.log('Event is saved', data))
-  .catch((err) => console.error('Error: ', error));
+  });
+  saveEvent.then(() => console.log('Event is saved', data));
+  saveEvent.catch((err) => console.error('Error: ', error));
 }

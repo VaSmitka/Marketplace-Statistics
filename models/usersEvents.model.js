@@ -17,8 +17,8 @@ module.exports = function(sequelize, DataTypes) {
   UsersEvents.init({
     eventType: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    gender: DataTypes.INTEGER,
-    role: DataTypes.INTEGER,
+    gender: DataTypes.STRING,
+    role: DataTypes.STRING,
     acountCreated: DataTypes.DATE
   }, {
     sequelize,
